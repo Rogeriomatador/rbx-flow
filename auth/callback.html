@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conectando · RBX Flow</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #090910; color: #f5f7ff; padding: 24px; }
+    main { width: min(680px, 100%); background: #151622; border: 1px solid rgba(255,255,255,.12); border-radius: 28px; padding: 28px; text-align: center; box-shadow: 0 30px 90px rgba(0,0,0,.45); }
+    h1 { margin: 0 0 12px; }
+    p { color: #c7ccdf; line-height: 1.6; }
+    code { display: block; margin-top: 16px; padding: 14px; background: #090910; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; color: #8eeeff; word-break: break-all; text-align: left; }
+    a, button { color: #090910; background: #8eeeff; border: 0; border-radius: 999px; padding: 12px 18px; font-weight: 900; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 14px; }
+    .muted { font-size: 13px; opacity: .76; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>RBX Flow</h1>
+    <p>Autorização recebida. Tentando voltar para o aplicativo...</p>
+    <p class="muted">Se o app não abrir sozinho, copie os dados abaixo e volte para o RBX Flow.</p>
+    <code id="result">Carregando...</code>
+    <a id="openApp" href="#">Abrir RBX Flow</a>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+
+    const code = params.get('code') || hashParams.get('code') || '';
+    const state = params.get('state') || hashParams.get('state') || '';
+    const error = params.get('error') || hashParams.get('error') || '';
+    const errorDescription = params.get('error_description') || hashParams.get('error_description') || '';
+
+    const deepLink = 'rbxflow://auth/callback'
+      + '?code=' + encodeURIComponent(code)
+      + '&state=' + encodeURIComponent(state)
+      + '&error=' + encodeURIComponent(error)
+      + '&error_description=' + encodeURIComponent(errorDescription);
+
+    const result = document.getElementById('result');
+    const openApp = document.getElementById('openApp');
+
+    if (error) {
+      result.textContent = 'Erro: ' + error + '\n' + errorDescription;
+    } else if (code) {
+      result.textContent = 'code=' + code + '\nstate=' + state;
+    } else {
+      result.textContent = 'Nenhum código OAuth encontrado na URL.';
+    }
+
+    openApp.href = deepLink;
+
+    if (code || error) {
+      setTimeout(() => {
+        window.location.href = deepLink;
+      }, 700);
+    }
+  </script>
+</body>
+</html>
