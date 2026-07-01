@@ -4,44 +4,99 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Política de Privacidade · RBX Flow</title>
+  <meta name="theme-color" content="#080812" />
   <style>
-    body { margin: 0; padding: 28px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #090910; color: #f5f7ff; line-height: 1.7; }
-    main { max-width: 900px; margin: 0 auto; background: #151622; border: 1px solid rgba(255,255,255,.12); border-radius: 28px; padding: 28px; }
-    h1, h2 { line-height: 1.1; }
-    p, li { color: #c7ccdf; }
-    a { color: #8eeeff; font-weight: 800; text-decoration: none; }
+    :root { color-scheme: dark; --bg:#070711; --card:rgba(18,20,35,.82); --text:#f8f9ff; --muted:#b5bbd2; --primary:#7c4dff; --cyan:#00e5ff; --green:#35ffb2; --yellow:#ffd166; --border:rgba(255,255,255,.12); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:radial-gradient(circle at 10% 0%, rgba(124,77,255,.34), transparent 34%), radial-gradient(circle at 90% 12%, rgba(0,229,255,.20), transparent 30%), var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; opacity:.12; pointer-events:none; background-image:radial-gradient(rgba(255,255,255,.24) 1px, transparent 1px); background-size:24px 24px; mask-image:linear-gradient(to bottom,#000,transparent 86%); }
+    .wrap { width:min(960px, calc(100% - 34px)); margin:0 auto; padding:28px 0 54px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 14px; border:1px solid var(--border); background:rgba(8,9,18,.68); backdrop-filter:blur(18px); border-radius:999px; position:sticky; top:14px; z-index:10; box-shadow:0 20px 70px rgba(0,0,0,.26); }
+    .brand { color:white; text-decoration:none; font-weight:950; letter-spacing:-.03em; display:flex; align-items:center; gap:10px; }
+    .drop { width:38px; height:38px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,var(--primary),var(--cyan)); box-shadow:0 0 35px rgba(0,229,255,.22); }
+    .drop::before { content:""; width:16px; height:22px; border-radius:999px 999px 999px 7px; background:white; transform:rotate(18deg); }
+    .links { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .links a { color:#d8faff; text-decoration:none; font-weight:850; font-size:14px; }
+    .hero { padding:72px 0 28px; }
+    .badge { display:inline-flex; padding:8px 12px; border-radius:999px; color:#d8ffef; background:rgba(53,255,178,.10); border:1px solid rgba(53,255,178,.24); font-weight:900; font-size:13px; }
+    h1 { margin:18px 0 12px; font-size:clamp(38px,7vw,72px); line-height:.92; letter-spacing:-.06em; }
+    .lead { max-width:780px; color:var(--muted); font-size:19px; }
+    .panel { margin-top:24px; padding:26px; border-radius:32px; background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035)); border:1px solid var(--border); box-shadow:0 28px 90px rgba(0,0,0,.34); }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:20px; }
+    .card { padding:18px; border-radius:24px; background:var(--card); border:1px solid var(--border); }
+    .card h2 { margin:0 0 8px; line-height:1.08; font-size:21px; }
+    .card p, .card li { color:var(--muted); margin-bottom:0; }
+    .notice { border-color:rgba(255,209,102,.24); background:rgba(255,209,102,.10); }
+    .notice strong { color:#ffe2a0; }
+    ul { margin:10px 0 0; padding-left:22px; }
+    a { color:#8eeeff; font-weight:900; text-decoration:none; }
+    .footer { color:var(--muted); padding:24px 0 0; }
+    @media (max-width:760px){ .grid{grid-template-columns:1fr;} .links a:nth-child(2){display:none;} }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Política de Privacidade do RBX Flow</h1>
-    <p>Última atualização: 30 de junho de 2026.</p>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="drop"></span><span>RBX Flow</span></a>
+      <div class="links"><a href="index.html">Início</a><a href="terms.html">Termos</a><a href="auth/callback.html">Callback</a></div>
+    </nav>
 
-    <h2>1. O que é o RBX Flow</h2>
-    <p>O RBX Flow é um launcher/assistente seguro para Roblox Mobile. Ele organiza atalhos, perfil, favoritos, histórico e ferramentas de apoio visual.</p>
+    <section class="hero">
+      <span class="badge">Privacidade e segurança</span>
+      <h1>Política de Privacidade</h1>
+      <p class="lead">Esta página explica quais dados o RBX Flow pode usar, por que eles são usados e como a conexão com Roblox deve funcionar.</p>
+    </section>
 
-    <h2>2. Dados coletados</h2>
-    <p>O RBX Flow pode salvar localmente no dispositivo informações como username, display name, User ID, avatar público, Place IDs favoritos, histórico de jogos e preferências do app.</p>
+    <main class="panel">
+      <p><strong>Última atualização:</strong> 30 de junho de 2026.</p>
+      <div class="grid">
+        <article class="card">
+          <h2>1. O que é o RBX Flow</h2>
+          <p>O RBX Flow é um assistente/launcher independente para Roblox Mobile. Ele pode organizar perfil, avatar, grupos, experiências, ativos, favoritos, histórico e ferramentas visuais.</p>
+        </article>
 
-    <h2>3. Conexão com Roblox</h2>
-    <p>Quando houver conexão com Roblox, ela deve ocorrer por autorização oficial OAuth. O RBX Flow não solicita senha do Roblox, não solicita cookie .ROBLOSECURITY e não acessa a conta escondido.</p>
+        <article class="card">
+          <h2>2. Dados básicos</h2>
+          <p>O app pode salvar localmente username, display name, User ID, avatar público, Place IDs, favoritos, histórico, preferências e status de conexão.</p>
+        </article>
 
-    <h2>4. Uso dos dados</h2>
-    <p>Os dados são usados para exibir perfil, personalizar a experiência, salvar favoritos, abrir jogos e mostrar informações autorizadas pelo usuário.</p>
+        <article class="card">
+          <h2>3. OAuth Roblox</h2>
+          <p>A conexão com Roblox deve ocorrer por OAuth oficial. O usuário autoriza as permissões na própria tela do Roblox antes do app acessar dados ou recursos.</p>
+        </article>
 
-    <h2>5. Armazenamento</h2>
-    <p>As informações do app podem ser armazenadas localmente no dispositivo. Tokens de autenticação, quando usados, devem ser armazenados de forma segura no aparelho.</p>
+        <article class="card notice">
+          <h2>4. Permissões avançadas</h2>
+          <p><strong>Importante:</strong> se o usuário autorizar recursos avançados, o app poderá acessar informações e ferramentas adicionais permitidas pelo Roblox, como comunidades, ativos, passes, produtos e experiências.</p>
+        </article>
 
-    <h2>6. Compartilhamento</h2>
-    <p>O RBX Flow não vende dados pessoais. Dados só são enviados para serviços necessários ao funcionamento do app, como APIs oficiais do Roblox, quando o usuário autoriza.</p>
+        <article class="card">
+          <h2>5. O que o app não pede</h2>
+          <ul>
+            <li>Não pede senha do Roblox.</li>
+            <li>Não usa credenciais ocultas.</li>
+            <li>Não acessa a conta sem autorização.</li>
+            <li>Não modifica o aplicativo oficial do Roblox.</li>
+          </ul>
+        </article>
 
-    <h2>7. Segurança</h2>
-    <p>O app não injeta código no Roblox, não modifica o aplicativo oficial e não tenta burlar sistemas de segurança.</p>
+        <article class="card">
+          <h2>6. Uso dos dados</h2>
+          <p>Os dados são usados para exibir perfil, personalizar a interface, abrir jogos, mostrar recursos autorizados, salvar preferências e melhorar a experiência dentro do RBX Flow.</p>
+        </article>
 
-    <h2>8. Contato</h2>
-    <p>Contato do projeto: <a href="https://github.com/Rogeriomatador/rbx-flow">GitHub do RBX Flow</a>.</p>
+        <article class="card">
+          <h2>7. Armazenamento</h2>
+          <p>Dados do app podem ser armazenados no dispositivo. Tokens, quando usados, devem ser protegidos por armazenamento seguro no aparelho.</p>
+        </article>
 
-    <p><a href="index.html">Voltar</a></p>
-  </main>
+        <article class="card">
+          <h2>8. Compartilhamento</h2>
+          <p>O RBX Flow não vende dados pessoais. Dados só devem ser enviados para serviços necessários, como APIs oficiais do Roblox, quando autorizado.</p>
+        </article>
+      </div>
+      <p class="footer">Contato do projeto: <a href="https://github.com/Rogeriomatador/rbx-flow">GitHub do RBX Flow</a>.</p>
+    </main>
+  </div>
 </body>
 </html>
